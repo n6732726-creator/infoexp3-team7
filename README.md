@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # MiniBoard Starter — 情報科学演習III
 
 ## Local / Codespaces
@@ -19,3 +20,6 @@ docker run --rm -p 5000:5000 miniboard
 - DELETE `/api/messages/<id>`
 
 > 授業用。Public URLに個人情報・秘密情報を入力しないこと。
+=======
+# infoexp3-team7
+>>>>>>> 1dc3d50a4087ea5b0a353f78e17610b634e341f7
