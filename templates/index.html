@@ -20,4 +20,15 @@
     <script src="/static/app.js"></script>
 </body>
 
+<form id="post-form">
+  <input type="text" id="name-input" placeholder="名前" required>
+  <textarea id="message-input" placeholder="いまどうしてる？" required></textarea>
+  
+  <div class="form-footer">
+    <!-- 文字数カウンター用の要素 -->
+    <span id="char-counter"><span id="char-count">0</span> / 140文字</span>
+    <button type="submit">投稿する</button>
+  </div>
+</form>
+
 </html>
