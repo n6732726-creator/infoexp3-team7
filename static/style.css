@@ -1,8 +1,7 @@
-
 body {
   font-family: system-ui, sans-serif;
   background: #f8fafc;
-  color: #fdd90a;
+  color: #334155; /* 読みやすい色に調整 */
   margin: 0;
 }
 
@@ -47,6 +46,23 @@ button {
 button:focus-visible {
   outline: 3px solid #0f172a;
   outline-offset: 2px;
+}
+
+/* ★ 削除ボタンのスタイル（赤色で小さめ） */
+.message button[onclick*="deleteMessage"] {
+  width: auto;
+  padding: 6px 12px;
+  font-size: 0.85rem;
+  background: #ef4444;
+  color: white;
+  margin-top: 10px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+}
+
+.message button[onclick*="deleteMessage"]:hover {
+  background: #dc2626;
 }
 
 /* 虹色発光ボタン */
@@ -165,6 +181,7 @@ button:focus-visible {
   cursor: pointer;
   font-size: 10px;
   white-space: nowrap;
+  color: #333;
 }
 
 .reaction-btn:hover {
