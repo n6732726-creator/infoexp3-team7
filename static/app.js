@@ -24,7 +24,14 @@ if (messageInput && charCount) {
 async function loadMessages() {
   const r = await fetch('/api/messages'); 
   const xs = await r.json(); 
-  document.querySelector('#messages').innerHTML = xs.map(x => `<article class="message"><b>${escapeHtml(x.name)}</b><p>${escapeHtml(x.message)}</p><div class="meta">#${x.id}</div></article>`).join('');
+  document.querySelector('#messages').innerHTML = xs.map(x => `
+    <article class="message">
+      <b class="message-name">${escapeHtml(x.name)}</b>
+      <p class="message-text">${escapeHtml(x.message)}</p>
+      <div class="meta">#${x.id}</div>
+      <button class="rainbow-toggle" type="button" aria-pressed="false">🌈 虹色に光らせる</button>
+    </article>
+  `).join('');
 }
 
 function escapeHtml(s) {
@@ -32,6 +39,16 @@ function escapeHtml(s) {
   d.textContent = s; 
   return d.innerHTML;
 }
+
+document.querySelector('#messages').addEventListener('click', e => {
+  const button = e.target.closest('.rainbow-toggle');
+  if (!button) return;
+
+  const message = button.closest('.message');
+  const isGlowing = message.classList.toggle('is-rainbow');
+  button.setAttribute('aria-pressed', String(isGlowing));
+  button.textContent = isGlowing ? '✨ 光らせ中' : '🌈 虹色に光らせる';
+});
 
 document.querySelector('#form').addEventListener('submit', async e => {
   e.preventDefault(); 
