@@ -1,1 +1,155 @@
-body{font-family:system-ui,sans-serif;background:#f8fafc;color:#fdd90a;margin:0}main{max-width:720px;margin:40px auto;padding:24px}form,.message{background:white;border:1px solid #e2e8f0;border-radius:12px;padding:16px;margin:14px 0}input,textarea,button{font:inherit;width:100%;padding:10px;margin:6px 0;box-sizing:border-box}textarea{min-height:90px}button{background:#2563eb;color:white;border:0;border-radius:8px;font-weight:700}.meta{color:#64748b;font-size:.85rem}
+body {
+  font-family: system-ui, sans-serif;
+  background: #f8fafc;
+  color: #fdd90a;
+  margin: 0;
+}
+
+main {
+  max-width: 720px;
+  margin: 40px auto;
+  padding: 24px;
+}
+
+form,
+.message {
+  background: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 16px;
+  margin: 14px 0;
+}
+
+input,
+textarea,
+button {
+  font: inherit;
+  width: 100%;
+  padding: 10px;
+  margin: 6px 0;
+  box-sizing: border-box;
+}
+
+textarea {
+  min-height: 90px;
+}
+
+button {
+  background: #2563eb;
+  color: white;
+  border: 0;
+  border-radius: 8px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+button:focus-visible {
+  outline: 3px solid #0f172a;
+  outline-offset: 2px;
+}
+
+.rainbow-toggle {
+  width: auto;
+  padding: 7px 12px;
+  background: #334155;
+  font-size: 0.9rem;
+}
+
+.rainbow-toggle[aria-pressed="true"] {
+  background: #7c3aed;
+}
+
+.message.is-rainbow {
+  animation: rainbow-glow 3s linear infinite;
+}
+
+.message.is-rainbow .message-name,
+.message.is-rainbow .message-text {
+  animation: rainbow-text 3s linear infinite;
+}
+
+@keyframes rainbow-glow {
+  0%,
+  100% {
+    border-color: #ff3b30;
+    box-shadow: 0 0 8px #ff3b30, 0 0 18px #ff3b30;
+  }
+
+  16% {
+    border-color: #ff9500;
+    box-shadow: 0 0 8px #ff9500, 0 0 18px #ff9500;
+  }
+
+  33% {
+    border-color: #ffcc00;
+    box-shadow: 0 0 8px #ffcc00, 0 0 18px #ffcc00;
+  }
+
+  50% {
+    border-color: #34c759;
+    box-shadow: 0 0 8px #34c759, 0 0 18px #34c759;
+  }
+
+  66% {
+    border-color: #007aff;
+    box-shadow: 0 0 8px #007aff, 0 0 18px #007aff;
+  }
+
+  83% {
+    border-color: #af52de;
+    box-shadow: 0 0 8px #af52de, 0 0 18px #af52de;
+  }
+}
+
+@keyframes rainbow-text {
+  0%,
+  100% {
+    color: #ff3b30;
+    text-shadow: 0 0 6px #ff3b30, 0 0 12px #ff3b30;
+  }
+
+  16% {
+    color: #ff9500;
+    text-shadow: 0 0 6px #ff9500, 0 0 12px #ff9500;
+  }
+
+  33% {
+    color: #ffcc00;
+    text-shadow: 0 0 6px #ffcc00, 0 0 12px #ffcc00;
+  }
+
+  50% {
+    color: #34c759;
+    text-shadow: 0 0 6px #34c759, 0 0 12px #34c759;
+  }
+
+  66% {
+    color: #007aff;
+    text-shadow: 0 0 6px #007aff, 0 0 12px #007aff;
+  }
+
+  83% {
+    color: #af52de;
+    text-shadow: 0 0 6px #af52de, 0 0 12px #af52de;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .message.is-rainbow {
+    animation: none;
+    border-color: #7c3aed;
+    box-shadow: 0 0 8px #7c3aed, 0 0 18px #7c3aed;
+  }
+
+  .message.is-rainbow .message-name,
+  .message.is-rainbow .message-text {
+    animation: none;
+    color: #7c3aed;
+    text-shadow: 0 0 6px #7c3aed, 0 0 12px #7c3aed;
+  }
+}
+
+.meta {
+  color: #64748b;
+  font-size: 0.85rem;
+}
