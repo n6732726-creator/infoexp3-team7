@@ -15,14 +15,17 @@
         <form id="form">
             <input id="name" maxlength="30" placeholder="Nickname" required>
             <textarea id="message" maxlength="300" placeholder="Message" required></textarea>
-    
-            <!-- ここに文字数カウンターを追加 -->
+            
+            <!-- ★ 削除用パスワード入力欄を追加 -->
+            <input type="password" id="password" maxlength="50" placeholder="削除用パスワード" required>
+
+            <!-- 文字数カウンター -->
             <div style="text-align: right; font-size: 0.9rem; color: #666; margin-bottom: 8px;">
                 <span id="char-count">0</span> / 300文字
             </div>
 
-    <button>投稿</button>
-</form>
+            <button>投稿</button>
+        </form>
         <p id="status"></p>
         <section id="messages"></section>
     </main>

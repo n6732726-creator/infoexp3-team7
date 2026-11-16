@@ -1,4 +1,3 @@
-
 const messageInput = document.getElementById('message');
 const charCount = document.getElementById('char-count');
 const submitButton = document.querySelector('#form button');
@@ -24,7 +23,7 @@ function escapeHtml(s) {
   return d.innerHTML;
 }
 
-// 投稿一覧を読み込む
+// 投稿一覧を読み込む（リアクション、返信、削除ボタンをすべて統合）
 async function loadMessages() {
   const r = await fetch('/api/messages');
   const xs = await r.json();
@@ -46,6 +45,10 @@ async function loadMessages() {
 
       <div class="meta">#${x.id}</div>
 
+      <!-- ★ 削除ボタンを追加 -->
+      <button type="button" onclick="deleteMessage(${x.id})" class="delete-btn" style="background: #ef4444; color: white; padding: 4px 10px; border: none; border-radius: 4px; margin-bottom: 8px; cursor: pointer;">削除</button>
+
+      <br>
       <button class="rainbow-toggle" type="button" aria-pressed="false">
         🌈 虹色に光らせる
       </button>
@@ -156,19 +159,20 @@ async function submitReply(event, messageId) {
   }
 }
 
-// 新規投稿
+// 新規投稿（パスワード送信に対応）
 document.querySelector('#form').addEventListener('submit', async e => {
   e.preventDefault();
 
   const name = document.querySelector('#name').value;
   const message = document.querySelector('#message').value;
+  const password = document.querySelector('#password').value; // パスワード取得
 
   const r = await fetch('/api/messages', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify({ name, message })
+    body: JSON.stringify({ name, message, password }) // パスワードを含めて送信
   });
 
   document.querySelector('#status').textContent =
@@ -176,12 +180,37 @@ document.querySelector('#form').addEventListener('submit', async e => {
 
   if (r.ok) {
     document.querySelector('#message').value = '';
-
+    document.querySelector('#password').value = ''; // パスワード欄をクリア
     if (charCount) charCount.textContent = '0';
 
     await loadMessages();
   }
 });
+
+// 削除ボタンが押されたときの処理（パスワード入力を求める）
+async function deleteMessage(id) {
+  const password = prompt("この投稿を削除するためのパスワードを入力してください：");
+  if (!password) return;
+
+  try {
+    const r = await fetch(`/api/messages/${id}`, {
+      method: 'DELETE',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ password: password })
+    });
+
+    if (r.ok) {
+      alert("削除しました");
+      await loadMessages();
+    } else {
+      const err = await r.json();
+      alert("削除失敗: " + (err.error || "パスワードが間違っています"));
+    }
+  } catch (e) {
+    console.error("Error:", e);
+    alert("通信エラーが発生しました");
+  }
+}
 
 // 初期読み込み
 loadMessages();
