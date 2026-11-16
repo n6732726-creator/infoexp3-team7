@@ -1,3 +1,4 @@
+
 body {
   font-family: system-ui, sans-serif;
   background: #f8fafc;
@@ -48,6 +49,7 @@ button:focus-visible {
   outline-offset: 2px;
 }
 
+/* 虹色発光ボタン */
 .rainbow-toggle {
   width: auto;
   padding: 7px 12px;
@@ -59,6 +61,7 @@ button:focus-visible {
   background: #7c3aed;
 }
 
+/* 虹色発光 */
 .message.is-rainbow {
   animation: rainbow-glow 3s linear infinite;
 }
@@ -69,32 +72,26 @@ button:focus-visible {
 }
 
 @keyframes rainbow-glow {
-  0%,
-  100% {
+  0%, 100% {
     border-color: #ff3b30;
     box-shadow: 0 0 8px #ff3b30, 0 0 18px #ff3b30;
   }
-
   16% {
     border-color: #ff9500;
     box-shadow: 0 0 8px #ff9500, 0 0 18px #ff9500;
   }
-
   33% {
     border-color: #ffcc00;
     box-shadow: 0 0 8px #ffcc00, 0 0 18px #ffcc00;
   }
-
   50% {
     border-color: #34c759;
     box-shadow: 0 0 8px #34c759, 0 0 18px #34c759;
   }
-
   66% {
     border-color: #007aff;
     box-shadow: 0 0 8px #007aff, 0 0 18px #007aff;
   }
-
   83% {
     border-color: #af52de;
     box-shadow: 0 0 8px #af52de, 0 0 18px #af52de;
@@ -102,32 +99,26 @@ button:focus-visible {
 }
 
 @keyframes rainbow-text {
-  0%,
-  100% {
+  0%, 100% {
     color: #ff3b30;
     text-shadow: 0 0 6px #ff3b30, 0 0 12px #ff3b30;
   }
-
   16% {
     color: #ff9500;
     text-shadow: 0 0 6px #ff9500, 0 0 12px #ff9500;
   }
-
   33% {
     color: #ffcc00;
     text-shadow: 0 0 6px #ffcc00, 0 0 12px #ffcc00;
   }
-
   50% {
     color: #34c759;
     text-shadow: 0 0 6px #34c759, 0 0 12px #34c759;
   }
-
   66% {
     color: #007aff;
     text-shadow: 0 0 6px #007aff, 0 0 12px #007aff;
   }
-
   83% {
     color: #af52de;
     text-shadow: 0 0 6px #af52de, 0 0 12px #af52de;
@@ -149,7 +140,91 @@ button:focus-visible {
   }
 }
 
+/* 投稿番号 */
 .meta {
   color: #64748b;
   font-size: 0.85rem;
+}
+
+/* リアクション */
+.reactions {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  gap: 8px;
+  margin: 12px 0;
+  align-items: center;
+}
+
+.reaction-btn {
+  width: auto;
+  background: #f1f3f5;
+  border: 1px solid #ddd;
+  border-radius: 20px;
+  padding: 3px 4px;
+  cursor: pointer;
+  font-size: 10px;
+  white-space: nowrap;
+}
+
+.reaction-btn:hover {
+  background: #e2e6ea;
+}
+
+/* 返信フォーム */
+.reply-form {
+  display: grid;
+  grid-template-columns: 110px minmax(0, 1fr) 75px;
+  gap: 8px;
+  margin: 15px 0;
+  padding: 12px;
+  background: #f8f9fa;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-sizing: border-box;
+}
+
+.reply-form input {
+  width: 100%;
+  min-width: 0;
+  height: 38px;
+  padding: 8px 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  box-sizing: border-box;
+  font-size: 14px;
+}
+
+.reply-form button {
+  width: 75px;
+  height: 38px;
+  padding: 0;
+  border: none;
+  border-radius: 6px;
+  background: #2563eb;
+  color: white;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.reply-form button:hover {
+  background: #1d4ed8;
+}
+
+/* 返信 */
+.reply {
+  margin: 8px 0;
+  padding: 10px;
+  background: #f8fafc;
+  border-radius: 8px;
+}
+
+@media (max-width: 500px) {
+  .reply-form {
+    grid-template-columns: 1fr 75px;
+  }
+
+  .reply-form input:first-child {
+    grid-column: 1 / -1;
+  }
 }
